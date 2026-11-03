@@ -1,6 +1,9 @@
-# Ex-4 Rail-Fence-Program
+# Ex-5 Rail-Fence-Program
 
 # IMPLEMENTATION OF RAIL FENCE – ROW & COLUMN TRANSFORMATION TECHNIQUE
+## NAME: DHANUSH M D
+
+## REGISTER NO. 212224100011
 
 # AIM:
 
@@ -19,7 +22,56 @@ STEP-4: Arrange the characters of the keyword in sorted order and the correspond
 STEP-5: Read the characters row wise or column wise in the former order to get the cipher text.
 
 # PROGRAM
+```C
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char text[100], rail[10][100];
+    int i, j, k = 0, row = 0, dir = 1;
+    int rails, len;
+
+    printf("Enter Plain Text: ");
+    scanf("%99s", text);
+
+    printf("Enter Number of Rails: ");
+    scanf("%d", &rails);
+
+    len = strlen(text);
+
+    for (i = 0; i < rails; i++)
+        for (j = 0; j < len; j++)
+            rail[i][j] = '\0';
+
+    for (i = 0; i < len; i++)
+    {
+        rail[row][i] = text[i];
+
+        if (row == 0)
+            dir = 1;
+        else if (row == rails - 1)
+            dir = -1;
+
+        row += dir;
+    }
+
+    printf("Cipher Text: ");
+
+    for (i = 0; i < rails; i++)
+        for (j = 0; j < len; j++)
+            if (rail[i][j] != '\0')
+                printf("%c", rail[i][j]);
+
+    return 0;
+}
+
+```
 
 # OUTPUT
 
+<img width="1912" height="682" alt="image" src="https://github.com/user-attachments/assets/c29abb2b-8d03-4aa1-ba47-8607ea08b1b0" />
+
+
 # RESULT
+The Rail Fence Cipher encryption technique was implemented successfully in C. The program accepts the plaintext and number of rails from the user and displays the corresponding ciphertext.
